@@ -1,40 +1,56 @@
-#include <iostream>
-#include <string>
+
+#include<iostream>
+#include<string>
 using namespace std;
-int main() {
-    string string_of_characters,n;
+int main(){
 
-    //1)Accept string from user 
-
-    cout<<"Enter set of meaninful or non-meaningful characters :";
-    getline(cin,string_of_characters);
-    cout<<"\n"<<"You entered : "<<string_of_characters<<endl;
-    cout<<"Length of your entered string : "<<string_of_characters.length()<<endl;
-    string m=string_of_characters;
-
-    //2)Checking for palindrome or not
-
-    for (int i=m.length()-1;i>=0;i=i-1) {
-        n=n+string_of_characters[i];
+//Accepts a string from the user.  
+string str,newStr="",reverseStr="";
+char replaceChar='*';
+cout<<"Please enter string:";
+getline(cin,str);
+for(int i=0;i<str.length();i++){
+    char ch=str[i];
+    if(ch>='A'&&ch<='Z'){
+        ch+=32;
     }
-    cout<<"Entered string in reverse order : "<<n<<endl;
-
-    for(int i=0;i<m.length();i=i+1) {
-        m[i]=toupper(m[i]);
-        n[i]=toupper(n[i]);
+    if(ch!=' '){
+         newStr=newStr+ch;
+    }
+    }
+    for(int i=newStr.length()-1;i>=0;i--){
+reverseStr+=newStr[i];
     }
 
-    cout<<"Coversion of forward string to upper case letters : "<<m<<endl;
-    cout<<"Coversion of reverse string to upper case letters : "<<n<<endl;
-
-    if (n==m) {
-        cout<<"Palindrome"<<endl;
-    }
-    else {
-        cout<<"Not Palindrome"<<endl;
+   // Checks whether the string is a palindrome (ignoring spaces and case sensitivity).
+    if(newStr==reverseStr){
+        cout<<str<<" String is palindrome"<<endl;
+    }else{
+        cout<<str<<" String is not palindrome"<<endl; 
     }
 
-    //3)Frequency of each word
-    
-
+//Replace all vowels in the string with a specific character (e.g. ").
+for(int i=0;i<newStr.length();i++){
+    char ch=newStr[i];
+    if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'){
+        cout<<replaceChar;
+    }else{
+        cout<<ch;
+    }
 }
+
+//Counts and displays the frequency of each character in the string (case insensitive).
+   cout<<"\n number of times character"<<endl;
+for(char ch='a';ch<='z';ch++){
+    int count=0;
+    for(int i=0;i<newStr.length();i++){
+        if(newStr[i]==ch){
+            count++;
+        }
+    }
+    if(count>0){
+        cout<<ch<<"="<<count<<endl;
+    }
+}
+return 0;
+    }
